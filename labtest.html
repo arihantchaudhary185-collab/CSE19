@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            text-align: center;
+            padding-top: 100px;
+            color: white;
+        }
+
+        .container {
+            background: rgba(0,0,0,0.3);
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            width: 150px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff9800;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e68900;
+        }
+
+        #output {
+            margin-top: 30px;
+            font-size: 40px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Countdown Timer</h1>
+    <input type="number" id="numberInput" placeholder="Enter number">
+    <button onclick="startCountdown()">Start</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+    function startCountdown() {
+        let num = document.getElementById("numberInput").value;
+        let output = document.getElementById("output");
+
+        if (num <= 0 || num === "") {
+            output.innerHTML = "Enter a valid number!";
+            return;
+        }
+
+        let current = parseInt(num);
+
+        let interval = setInterval(function () {
+            output.innerHTML = current;
+
+            current--;
+
+            if (current < 1) {
+                clearInterval(interval);
+                output.innerHTML = "Done!";
+            }
+        }, 1000); // 1 second delay
+    }
+</script>
+
+</body>
+</html>

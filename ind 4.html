@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Salary Management System</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f4; }
+        .header-container { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 20px; }
+        input { padding: 8px; border: 1px solid #ccc; }
+        button { padding: 8px 15px; cursor: pointer; background: #e1e1e1; border: 1px solid #999; }
+        button:hover { background: #d1d1d1; }
+        #displayArea { margin-top: 20px; background: white; padding: 15px; border-radius: 5px; min-height: 50px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+    <h2>Employee Salary Management System</h2>
+
+    <div class="header-container">
+        <input type="text" id="empName" placeholder="Employee Name">
+        <input type="text" id="empId" placeholder="Employee ID">
+        <input type="number" id="empSalary" placeholder="Salary">
+        <input type="text" id="empDept" placeholder="Department">
+        
+        <button onclick="addEmployee()">Add Employee</button>
+        <button onclick="displayAll()">Display All</button>
+        <button onclick="filterSalary()">Salary > 50000</button>
+        <button onclick="calculateTotal()">Total Salary</button>
+        <button onclick="calculateAverage()">Average Salary</button>
+    </div>
+
+    <div id="displayArea">
+        <i>Employee data will appear here...</i>
+    </div>
+
+    <script>
+        let employees = [];
+
+        function addEmployee() {
+            const name = document.getElementById('empName').value;
+            const id = document.getElementById('empId').value;
+            const salary = parseFloat(document.getElementById('empSalary').value);
+            const dept = document.getElementById('empDept').value;
+
+            if (name && id && salary && dept) {
+                employees.push({ name, id, salary, dept });
+                alert("Employee Added Successfully!");
+                clearInputs();
+            } else {
+                alert("Please fill all fields");
+            }
+        }
+
+        function clearInputs() {
+            document.getElementById('empName').value = '';
+            document.getElementById('empId').value = '';
+            document.getElementById('empSalary').value = '';
+            document.getElementById('empDept').value = '';
+        }
+
+        function generateTable(data) {
+            if (data.length === 0) return "No records found.";
+            let html = `<table><tr><th>ID</th><th>Name</th><th>Salary</th><th>Dept</th></tr>`;
+            data.forEach(emp => {
+                html += `<tr><td>${emp.id}</td><td>${emp.name}</td><td>${emp.salary}</td><td>${emp.dept}</td></tr>`;
+            });
+            html += `</table>`;
+            return html;
+        }
+
+        function displayAll() {
+            document.getElementById('displayArea').innerHTML = "<h3>All Employees</h3>" + generateTable(employees);
+        }
+
+        function filterSalary() {
+            const filtered = employees.filter(emp => emp.salary > 50000);
+            document.getElementById('displayArea').innerHTML = "<h3>Salaries > 50,000</h3>" + generateTable(filtered);
+        }
+
+        function calculateTotal() {
+            const total = employees.reduce((sum, emp) => sum + emp.salary, 0);
+            document.getElementById('displayArea').innerHTML = `<h3>Total Company Expenditure: $${total.toLocaleString()}</h3>`;
+        }
+
+        function calculateAverage() {
+            if (employees.length === 0) return;
+            const total = employees.reduce((sum, emp) => sum + emp.salary, 0);
+            const avg = total / employees.length;
+            document.getElementById('displayArea').innerHTML = `<h3>Average Salary: $${avg.toFixed(2)}</h3>`;
+        }
+    </script>
+</body>
+</html>

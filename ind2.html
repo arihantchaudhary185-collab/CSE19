@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Lab - Fixed</title>
+    <style>
+        /* This changes the ENTIRE page background */
+        body {
+            background-color: #d1d9e6; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            transition: background-color 0.4s ease;
+        }
+
+        /* The Box (Card) stays white */
+        .lab-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 450px;
+        }
+
+        h1 { margin-bottom: 20px; color: #333; }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #3b5998;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover { background-color: #2d4373; }
+
+        .reset-btn { background-color: #666; }
+
+        #displayPara {
+            margin-top: 20px;
+            line-height: 1.5;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lab-card">
+        <h1 id="mainTitle">Welcome to JavaScript Lab</h1>
+        
+        <input type="text" id="userInput" placeholder="Enter new heading text">
+        
+        <div class="buttons">
+            <button onclick="changeHeading()">Change Heading</button>
+            <button onclick="changePageBG()">Change Background</button>
+            <button onclick="makeFontBigger()">Increase Font Size</button>
+            <button onclick="toggleText()">Show/Hide Paragraph</button>
+            <button onclick="resetLab()" class="reset-btn">Reset</button>
+        </div>
+
+        <p id="displayPara">
+            This is a sample paragraph. JavaScript events can dynamically change content.
+        </p>
+    </div>
+
+    <script>
+        // Store the elements in variables so we can use them
+        const title = document.getElementById('mainTitle');
+        const para = document.getElementById('displayPara');
+        const input = document.getElementById('userInput');
+        let currentSize = 16; // Initial font size
+
+        function changeHeading() {
+            if (input.value !== "") {
+                title.innerText = input.value;
+            } else {
+                alert("Please enter some text!");
+            }
+        }
+
+        function changePageBG() {
+            // Generate a random color and apply it to document.body
+            const randomColor = "hsl(" + Math.random() * 360 + ", 70%, 80%)";
+            document.body.style.backgroundColor = randomColor;
+        }
+
+        function makeFontBigger() {
+            currentSize += 2;
+            para.style.fontSize = currentSize + "px";
+        }
+
+        function toggleText() {
+            if (para.style.display === "none") {
+                para.style.display = "block";
+            } else {
+                para.style.display = "none";
+            }
+        }
+
+        function resetLab() {
+            // Reset everything to original values
+            title.innerText = "Welcome to JavaScript Lab";
+            document.body.style.backgroundColor = "#d1d9e6";
+            para.style.display = "block";
+            para.style.fontSize = "16px";
+            currentSize = 16;
+            input.value = "";
+        }
+    </script>
+</body>
+</html>

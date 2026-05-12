@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Result Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .container { border: 1px solid #ccc; padding: 20px; width: 300px; }
+        h2 { margin-top: 0; }
+        input { margin-bottom: 10px; width: 100%; box-sizing: border-box; }
+        button { cursor: pointer; }
+        #output { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Student Result Calculator</h2>
+        
+        <label for="numSubjects">Enter Number of Subjects</label><br>
+        <input type="number" id="numSubjects" placeholder="e.g. 3">
+        
+        <br>
+        <button onclick="calculateResult()">Calculate Result</button>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function calculateResult() {
+            const num = document.getElementById('numSubjects').value;
+            const outputDiv = document.getElementById('output');
+            
+            // Validation
+            if (num <= 0) {
+                alert("Please enter a valid number of subjects.");
+                return;
+            }
+
+            let totalMarks = 0;
+            let subjectCount = parseInt(num);
+
+            for (let i = 1; i <= subjectCount; i++) {
+                // This triggers the prompt popup seen in your image
+                let mark = prompt("Enter marks for Subject " + i);
+                
+                // Convert input to number and add to total
+                if (mark !== null && mark !== "") {
+                    totalMarks += parseFloat(mark);
+                } else {
+                    alert("Calculation cancelled or invalid input.");
+                    return;
+                }
+            }
+
+            // Simple logic for Pass/Fail or Grade
+            let average = totalMarks / subjectCount;
+            let status = average >= 40 ? "Passed" : "Failed";
+
+            outputDiv.innerHTML = `
+                <hr>
+                Total Marks: ${totalMarks} <br>
+                Average: ${average.toFixed(2)} <br>
+                Status: ${status}
+            `;
+        }
+    </script>
+
+</body>
+</html>

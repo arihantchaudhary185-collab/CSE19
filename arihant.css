@@ -1,0 +1,59 @@
+<style>
+         body {
+            background-color: #d1d9e6; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            transition: background-color 0.4s ease;
+        }
+
+        
+        .lab-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 450px;
+        }
+
+        h1 { margin-bottom: 20px; color: #333; }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #3b5998;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover { background-color: #2d4373; }
+
+        .reset-btn { background-color: #666; }
+
+        #displayPara {
+            margin-top: 20px;
+            line-height: 1.5;
+            color: #444;
+        }
+</style>

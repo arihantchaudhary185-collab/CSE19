@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Script</title>
+    <link rel="stylesheet" href="./arihant.css">
+    
+</head>
+<body>
+     <div class="lab-card">
+        <h1 id="mainTitle">Welcome to JavaScript Lab</h1>
+        
+        <input type="text" id="userInput" placeholder="Enter new heading text">
+        
+        <div class="buttons">
+            <button onclick="changeHeading()">Change Heading</button>
+            <button onclick="changePageBG()">Change Background</button>
+            <button onclick="makeFontBigger()">Increase Font Size</button>
+            <button onclick="toggleText()">Show/Hide Paragraph</button>
+            <button onclick="resetLab()" class="reset-btn">Reset</button>
+        </div>
+
+         <p id="displayPara">
+            Welcome to Abes 
+        </p>
+    </div>
+
+    <script>
+        // Store the elements in variables so we can use them
+        const title = document.getElementById('mainTitle');
+        const para = document.getElementById('displayPara');
+        const input = document.getElementById('userInput');
+        let currentSize = 16; // Initial font size
+
+        function changeHeading() {
+            if (input.value !== "") {
+                title.innerText = input.value;
+            } else {
+                alert("Please enter some text!");
+            }
+        }
+
+    
+           
+    
+    
+</body>
+</html>
